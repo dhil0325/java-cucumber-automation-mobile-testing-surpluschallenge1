@@ -2,12 +2,15 @@ package app.bersama.pages;
 
 import app.bersama.DriverManager;
 import app.bersama.Keyword;
+import app.bersama.enums.Direction;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -26,36 +29,43 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "id.binar.fp.secondhand:id/et_email")
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextEmail")
     private WebElement emailField;
 
-    @FindBy(id = "id.binar.fp.secondhand:id/et_password")
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextPassword")
     private WebElement passwordField;
 
-    @FindBy(id = "id.binar.fp.secondhand:id/btn_login")
-    private WebElement buttonMasuk;
+    @FindBy(id = "com.loginmodule.learning:id/appCompatButtonLogin")
+    private WebElement loginButton;
 
 
-    @FindBy(id = "id.binar.fp.secondhand:id/tv_register")
+    @FindBy(id = "com.loginmodule.learning:id/textViewLinkRegister")
     private WebElement navLinkRegister;
 
-    @FindBy(xpath = ".//*[contains(@text,'Email atau kata sandi salah')]")
-    private WebElement toastError;
+    @FindBy(id = "com.loginmodule.learning:id/snackbar_text")
+    private WebElement errorSnackBar;
 
     public void Login(String email, String password) {
+
         Keyword.enterText(emailField, email);
+        passwordField.click();
         Keyword.enterText(passwordField, password);
-        buttonMasuk.click();
+        driver.navigate().back();
+        loginButton.click();
     }
 
     public void navigateToRegister(){
         navLinkRegister.click();
     }
 
-//    public void setToastError(){
-//        WebDriverWait wait = new WebDriverWait(driver, 3);
-//        wait.until(ExpectedConditions.presenceOfElementLocated('.//*[contains(@text,'Email atau kata sandi salah')])');
-//
-//
-//    }
+    public void toastErrorVisible(String expectedMessage){
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+//        wait.until(ExpectedConditions.presenceOfElementLocated('.//*[contains(@text,'Wrong Email or Password')])');
+        Keyword.waitUntilElementIsVisible(errorSnackBar);
+        String actual =errorSnackBar.getText();
+        Assert.assertEquals(actual, expectedMessage);
+
+
+
+  }
 }

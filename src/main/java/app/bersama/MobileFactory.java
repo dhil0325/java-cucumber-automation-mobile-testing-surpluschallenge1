@@ -22,7 +22,7 @@ public class MobileFactory {
         DesiredCapabilities dc = new DesiredCapabilities();
 
         URL url = new URL("http://localhost:4723/wd/hub");
-        String absPathApk = System.getProperty("user.dir") + File.separator + "apk/app-second-hand.apk";
+        String absPathApk = System.getProperty("user.dir") + File.separator + "apk/Sample Android App - Login Tes_4.0_Apkpure.apk";
 
         if (platformType.equalsIgnoreCase("ANDROID")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
@@ -30,15 +30,15 @@ public class MobileFactory {
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID.toString());
             dc.setCapability(MobileCapabilityType.APP, absPathApk);
             dc.setCapability(MobileCapabilityType.DEVICE_NAME, "Infinix Hot 11S");
-            dc.setCapability(MobileCapabilityType.NO_RESET, false);
+            dc.setCapability(MobileCapabilityType.NO_RESET, true);
 
         } else if (platformType.equalsIgnoreCase("IOS")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.IOS.toString());
-            dc.setCapability(MobileCapabilityType.APP, "apk/app-second-hand.apk");
+            dc.setCapability(MobileCapabilityType.APP, "apk/Sample Android App - Login Tes_4.0_Apkpure.apk");
             dc.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
             dc.setCapability(MobileCapabilityType.UDID, "");
-            dc.setCapability(MobileCapabilityType.NO_RESET, false);
+            dc.setCapability(MobileCapabilityType.NO_RESET, true);
         }
         return new AndroidDriver(url, dc);
     }

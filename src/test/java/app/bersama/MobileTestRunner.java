@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
  * @project java-cucumber-mobile
  */
 
-@CucumberOptions(features = "src/test/java/app/bersama/features/Order.feature",
+@CucumberOptions(features = "src/test/java/app/bersama/features/NegativeLogin.feature",
         glue = "app.bersama.steps",
         plugin = {
                 "pretty",
@@ -35,8 +35,10 @@ public class MobileTestRunner extends AbstractTestNGCucumberTests {
                 new MobileFactory().launchMobile("ANDROID"));
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true )
     public void tearDownDriver() {
         DriverManager.getInstance().removeDriver();
     }
 }
+
+

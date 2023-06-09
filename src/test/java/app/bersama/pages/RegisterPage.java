@@ -19,46 +19,28 @@ public class RegisterPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "id.binar.fp.secondhand:id/et_name")
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextName")
     private WebElement nameField;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
-            "/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout" +
-            "/android.widget.ScrollView[1]/android.view.ViewGroup/android.widget.LinearLayout[2]/" +
-            "android.widget.FrameLayout/android.widget.EditText")
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextEmail")
     private WebElement emailField;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/" +
-            "android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout" +
-            "/android.widget.ScrollView[1]/android.view.ViewGroup/android.widget.LinearLayout[3]/" +
-            "android.widget.FrameLayout/android.widget.EditText")
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextPassword")
     private WebElement passwordField;
 
-    @FindBy(id = "id.binar.fp.secondhand:id/et_phone")
-    private WebElement numPhoneField;
+    @FindBy(id = "com.loginmodule.learning:id/textInputEditTextConfirmPassword")
+    private WebElement conpasswordField;
 
-    @FindBy(id = "id.binar.fp.secondhand:id/et_city")
-    private WebElement cityField;
-
-    @FindBy(id = "id.binar.fp.secondhand:id/et_address")
-    private WebElement addressField;
-
-    @FindBy(id = "id.binar.fp.secondhand:id/btn_register")
+    @FindBy(id = "com.loginmodule.learning:id/appCompatButtonRegister")
     private WebElement registerButton;
 
-    @FindBy(id = "id.binar.fp.secondhand:id/tv_login")
-    private WebElement navLinkLogin;
-
     public void userRegister(String nama, String email,
-                             String password, String phoneNum,
-                             String city, String address) {
+                             String password, String conpassword) {
+        Keyword.swipe(Direction.DOWN);
         Keyword.enterText(nameField, nama);
         Keyword.enterText(emailField, email);
         Keyword.enterText(passwordField, password);
-        Keyword.enterText(numPhoneField, phoneNum);
-        Keyword.enterText(cityField, city);
-        Keyword.enterText(addressField, address);
-        Keyword.swipe(Direction.UP);
+        Keyword.enterText(conpasswordField, conpassword);
         registerButton.click();
     }
 }
